@@ -81,7 +81,7 @@ export default function Home() {
 
         {/* Generate result */}
         <Pane elevation={1} width="50%" padding="16px" marginTop="32px">
-          <p>{laugh}</p>
+          <p style={{ overflowWrap: "anywhere" }}>{laugh}</p>
         </Pane>
 
         <CopyToClipboard
