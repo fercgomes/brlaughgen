@@ -34,7 +34,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Heading size="700">🇧🇷 Brazilian Laugh Generator 🇧🇷</Heading>
+        <Heading>🇧🇷 Brazilian Laugh Generator 🇧🇷</Heading>
         <div
           style={{
             width: "50%",
