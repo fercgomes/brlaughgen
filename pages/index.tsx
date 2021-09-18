@@ -13,6 +13,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { laughGenerator } from "../lib/laugh-gen";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import GithubCorner from "react-github-corner";
 
 export default function Home() {
   const [age, setAge] = React.useState(15);
@@ -110,6 +111,7 @@ export default function Home() {
           </span>
         </a> */}
       </footer>
+      <GithubCorner href="https://github.com/fercgomes/brlaughgen" />
     </div>
   );
 }
