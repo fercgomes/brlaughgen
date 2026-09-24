@@ -14,6 +14,12 @@ import styles from "../styles/Home.module.css";
 import { laughGenerator } from "../lib/laugh-gen";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import GithubCorner from "react-github-corner";
+import posthog from "posthog-js";
+
+const isPostHogConfigured = Boolean(
+  process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
+    process.env.NEXT_PUBLIC_POSTHOG_HOST
+);
 
 export default function Home() {
   const [age, setAge] = React.useState(15);
@@ -24,6 +30,10 @@ export default function Home() {
   const clickGenerateHandler = () => {
     setLaugh(laughGenerator(age, intensity));
     setCopied(false);
+
+    if (isPostHogConfigured) {
+      posthog.capture("laugh_generated", { age, intensity });
+    }
   };
 
   return (
@@ -90,6 +100,12 @@ export default function Home() {
           onCopy={() => {
             setCopied(true);
             toaster.notify("Copied to clipboard");
+
+            if (isPostHogConfigured) {
+              posthog.capture("laugh_copied", {
+                has_generated_laugh: Boolean(laugh),
+              });
+            }
           }}
         >
           <Button>Copy to clipboard</Button>
